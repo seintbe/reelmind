@@ -1,130 +1,43 @@
 <p align="center">
-  <img src="./doc/icon.png" alt="Reel Mind Logo" width="72" height="72" />
+  <img src="./doc/icon.png" alt="Reel Mind" width="72" height="72" />
 </p>
 
 <h1 align="center">Reel Mind</h1>
 
 <p align="center">
-  <strong>把知识视频变成可复习、可搜索、可追问、可核验的 AI 笔记</strong>
+  把知识类短视频整理成可搜索、可复习、可追问的 AI 笔记。
 </p>
 
-<p align="center">
-  把短视频变成可沉淀的知识，支持视频解析、音频转写、AI 总结、Markdown 笔记、思维导图、知识卡片、联网核验、收藏回看和上下文问答。
-</p>
+Reel Mind 是一个面向抖音精选知识视频的本地知识管理工具。输入视频链接后，它可以完成视频解析、音频转写、AI 总结，并生成 Markdown 笔记、思维导图和知识卡片。
 
-<p align="center">
-  <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License" />
-  <img src="https://img.shields.io/badge/frontend-React%2019-61dafb" alt="React" />
-  <img src="https://img.shields.io/badge/backend-FastAPI-009688" alt="FastAPI" />
-  <img src="https://img.shields.io/badge/extension-Vue%203-42b883" alt="Vue" />
-  <img src="https://img.shields.io/badge/AI-OpenAI%20%7C%20DeepSeek%20%7C%20Qwen-ff69b4" alt="AI Providers" />
-</p>
+## 主要功能
 
----
-
-## 目录
-
-- [项目亮点](#项目亮点)
-- [界面预览](#界面预览)
-- [技术栈](#技术栈)
-- [快速开始](#快速开始)
-- [使用流程](#使用流程)
-- [配置说明](#配置说明)
-- [浏览器扩展](#浏览器扩展)
-- [常见问题](#常见问题)
-- [项目结构](#项目结构)
-- [路线图](#路线图)
-- [许可证](#许可证)
-
-## 项目亮点
-
-Reel Mind 当前版本已经收口为抖音精选知识视频演示版，重点验证从视频链接到知识资产的完整闭环。
-
-我们做了一款面向**知识型短视频学习者、内容整理者和对信息可信度敏感的用户**，在**刷到有价值但真假难辨、难以复习的知识视频**场景下，通过**视频链接一键生成 AI 笔记、知识卡片、思维导图，并对关键主张进行联网核验**，带来**既能快速吸收知识，又能判断内容可信度的安心学习体验**的产物。
-
-- **一键生成知识笔记**：输入抖音精选视频链接，自动解析视频信息、下载音频、转写内容并生成结构化 Markdown。
-- **思维导图视图**：从笔记中提取专用 `## 思维导图` 章节，使用 Markmap 渲染可视化知识结构。
-- **知识卡片与内容评分**：从笔记、转写和视频元信息中提取核心结论、操作步骤、风险提醒和行动清单，并给出信息密度、可信度、可执行性评分。
-- **联网核验**：从视频笔记中抽取数据陈述、因果判断、高风险建议等可核验主张，结合学术/国内/Brave 等搜索源和 AI 判断，提示外部佐证、反证或证据不足。
-- **收藏与回看**：支持收藏夹、标签和备注，生成记录会持久化到后端，刷新或重启后仍可恢复。
-- **AI 上下文问答**：支持基于当前任务的视频元信息、转写文本和笔记内容追问，也支持跨视频知识库问答。
-- **多模型供应商**：支持 OpenAI 兼容接口、DeepSeek、Qwen 等模型供应商配置。
-- **转写兜底策略**：支持 bcut、fast-whisper、Groq、MLX Whisper 等转写方式，并在低质量 ASR 场景下合并视频元信息。
-- **浏览器扩展辅助**：扩展提供 Cookie 同步、页面入口、弹窗和侧边栏能力，降低抖音登录态配置成本。
-
-## 界面预览
-
-<p align="center">
-  <img src="./doc/image1.png" alt="Reel Mind Preview 1" width="860" />
-</p>
-
-<p align="center">
-  <img src="./doc/image3.png" alt="Reel Mind Preview 2" width="860" />
-</p>
-
-<p align="center">
-  <img src="./doc/image4.png" alt="Reel Mind Preview 3" width="860" />
-</p>
-
-## 技术栈
-
-| 模块 | 技术 |
-| --- | --- |
-| Web 前端 | React 19、Vite、TypeScript、Tailwind CSS、Radix UI、Zustand、Markmap |
-| 后端服务 | Python、FastAPI、SQLAlchemy、SQLite、Uvicorn |
-| 浏览器扩展 | Vue 3、Vite、WebExtension MV3、UnoCSS |
-| 桌面端预留 | Tauri 2 |
-| AI 与转写 | OpenAI Compatible API、DeepSeek、Qwen、faster-whisper、bcut、Groq |
-| 部署 | 本地 Windows 启动脚本、可选 Docker Compose/Nginx |
+- 解析抖音精选视频并生成结构化笔记
+- 音频转写与 AI 总结
+- Markdown、思维导图和知识卡片视图
+- 收藏、标签、备注和历史记录
+- 基于当前笔记或知识库进行 AI 问答
+- 对关键内容进行联网核验
+- 通过浏览器扩展同步抖音 Cookie
 
 ## 快速开始
 
-### 给非技术人员
+目前推荐在 Windows 上使用本地启动脚本。开始前请安装：
 
-Windows 上只保留根目录一个入口：
+- Git
+- Python 3.11+
+- Node.js 20+
+- Corepack
+- FFmpeg
 
-```text
-run.bat           启动本地后端和前端
-run.bat --status  查看服务状态和健康检查
-run.bat --stop    停止本地前后端进程
-run.bat --check   检查本地依赖
-```
-
-第一次启动前需要准备好 `backend\.venv` 和 `reel-mind-frontend\node_modules`。详细说明见 [笨蛋部署说明](./DEPLOYMENT.md)。
-
-### 方式一：本地脚本启动（推荐）
-
-Windows 用户优先双击根目录的 `run.bat`。这是唯一保留的本地入口，默认不需要 Docker。
-
-默认访问地址：
-
-```text
-http://127.0.0.1:3015/
-```
-
-后端 API：
-
-```text
-http://127.0.0.1:8483/api/sys_check
-http://127.0.0.1:8483/api/sys_health
-```
-
-如果只想启动但不自动打开浏览器：
+### 1. 克隆项目
 
 ```powershell
-.\run.bat --no-open
+git clone https://github.com/seintbe/reelmind.git
+cd reelmind
 ```
 
-脚本会自动：
-
-- 读取或创建本地 `.env`
-- 检查后端虚拟环境和前端依赖
-- 启动后端和前端开发服务
-- 通过健康检查后打开浏览器
-
-首次运行前如果依赖不存在，先安装：
-
-#### 准备后端
+### 2. 安装后端依赖
 
 ```powershell
 cd backend
@@ -133,7 +46,7 @@ python -m venv .venv
 cd ..
 ```
 
-#### 准备前端
+### 3. 安装前端依赖
 
 ```powershell
 cd reel-mind-frontend
@@ -142,290 +55,95 @@ pnpm install
 cd ..
 ```
 
-### 方式二：手动源码开发启动
+### 4. 启动项目
 
-如果需要分别调试后端或前端，可以手动启动。默认仍建议使用和 `run.bat` 一致的本地端口：
-
-- 后端：`http://127.0.0.1:8483`
-- 前端：`http://127.0.0.1:3015`
-
-启动后端：
+双击 `run.bat`，或在 PowerShell 中运行：
 
 ```powershell
-cd backend
-.\.venv\Scripts\python.exe main.py
+.\run.bat
 ```
 
-启动前端：
-
-```powershell
-cd reel-mind-frontend
-$env:VITE_API_BASE_URL="/api"
-pnpm run dev -- --host 0.0.0.0 --port 3015
-```
-
-后端根路径不是页面入口，直接访问 `http://127.0.0.1:8483` 返回 `{"detail":"Not Found"}` 属于正常现象。
-
-### 可选：Docker 部署路径
-
-Docker 仅作为可选部署或高级演示路径保留，不再是默认推荐启动方式。确实需要容器部署时，直接使用 Docker Compose：
-
-```powershell
-docker compose up -d --build
-```
-
-Docker 模式下，后端通过 Nginx 的 `3015` 端口访问：
+启动完成后访问：
 
 ```text
-Web:      http://127.0.0.1:3015/
-API:      http://127.0.0.1:3015/api/...
-健康检查: http://127.0.0.1:3015/api/sys_check
+http://127.0.0.1:3015/
 ```
 
-查看服务状态和日志：
+常用命令：
 
 ```powershell
-docker compose ps
-docker compose logs --tail=80 backend
+.\run.bat --check    # 检查依赖
+.\run.bat --status   # 查看服务状态
+.\run.bat --stop     # 停止服务
+.\run.bat --no-open  # 启动后不自动打开浏览器
 ```
 
-停止 Docker 服务：
+## 使用方法
 
-```powershell
-docker compose down
-```
+1. 打开 Web 页面，在设置中配置模型供应商、Base URL、模型和 API Key，并测试连接。
+2. 输入抖音精选视频链接。
+3. 根据需要填写收藏夹、标签和备注。
+4. 点击“生成笔记”，等待解析、转写和总结完成。
+5. 在 Markdown、思维导图、知识卡片或 AI 问答视图中查看结果。
 
-如果本地还残留旧容器名，执行一次完整重建即可切换到 `reel-mind-backend`、`reel-mind-frontend`、`reel-mind-nginx`：
+如果视频需要登录状态，请按[扩展说明](./reel-mind-extension/README.md)完成构建，在浏览器中加载 `reel-mind-extension/extension/`，然后同步抖音 Cookie。
 
-```powershell
-docker compose down
-docker compose up -d --build
-```
-
-## 测试
-
-后端测试依赖单独放在 `backend/requirements-dev.txt`。首次配置测试环境：
-
-```powershell
-cd backend
-.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
-cd ..
-```
-
-从仓库根目录运行后端测试：
-
-```powershell
-backend\.venv\Scripts\python.exe -m pytest
-```
-
-前端和扩展构建检查：
-
-```powershell
-cd reel-mind-frontend
-pnpm run build
-
-cd ..\reel-mind-extension
-pnpm run build
-```
-
-## 使用流程
-
-1. 打开 Web 前端。
-2. 在「视频链接」中输入抖音精选链接，例如：
-
-```text
-https://www.douyin.com/jingxuan?modal_id=7633777410067926322
-```
-
-3. 在设置页确认模型供应商和模型已经配置。
-4. 可选填写收藏夹、标签和收藏备注。
-5. 点击「生成笔记」。
-6. 等待任务完成解析、下载、转写和总结。
-7. 在「我的收藏」中回看历史笔记。
-8. 切换「Markdown / 思维导图 / 知识卡片 / AI 问答」视图继续复习。
-9. 在知识卡片视图查看信息密度、可信度、可执行性评分。
-10. 点击「联网核验」对关键主张进行外部资料核验，查看来源、佐证、反证或证据不足提示。
-
-生成结果默认写入：
+生成的笔记默认保存在：
 
 ```text
 backend/note_results/
 ```
 
-常见结果文件：
+## 配置
 
-```text
-{task_id}.json
-{task_id}.status.json
-{task_id}_audio.json
-{task_id}_transcript.json
-{task_id}_markdown.md
-{task_id}_markdown.status.json
-```
+首次运行 `run.bat` 时会自动创建根目录 `.env`。也可以复制 `.env.example` 后手动修改。
 
-## 配置说明
+常用配置：
 
-主要配置位于根目录 `.env`。
-
-| 变量 | 说明 | 示例 |
+| 变量 | 说明 | 默认值 |
 | --- | --- | --- |
-| `APP_PORT` | 可选 Docker/Nginx 对外端口 | `3015` |
-| `BACKEND_HOST` | 后端监听地址 | `0.0.0.0` |
-| `BACKEND_PORT` | 后端服务端口 | `8483` |
-| `VITE_API_BASE_URL` | 前端请求后端 API 地址 | `/api` 或 `http://127.0.0.1:8483/api` |
-| `TRANSCRIBER_TYPE` | 转写器类型 | `bcut`、`fast-whisper`、`groq` |
-| `WHISPER_MODEL_SIZE` | Whisper 模型大小 | `tiny`、`base`、`small`、`medium` |
-| `NOTE_OUTPUT_DIR` | 笔记结果目录 | `note_results` |
-| `FFMPEG_BIN_PATH` | FFmpeg 可执行文件路径 | 留空则使用系统 PATH |
-| `ONLINE_VERIFY_SEARCH_PROVIDER` | 联网核验主搜索源 | `brave`、`bing_academic`、`bing_cn` |
-| `ONLINE_VERIFY_SEARCH_FALLBACK_PROVIDERS` | 联网核验兜底搜索源 | `bing_academic,bing_cn,baidu` |
-| `BRAVE_SEARCH_API_KEY` | Brave Search API Key | 使用 Brave 搜索源时填写 |
-| `BRAVE_SEARCH_COUNTRY` | Brave 搜索国家/地区 | `CN` |
-| `BRAVE_SEARCH_LANG` | Brave 搜索语言 | `zh-hans` |
+| `BACKEND_PORT` | 后端端口 | `8483` |
+| `VITE_FRONTEND_PORT` | 前端端口 | `3015` |
+| `TRANSCRIBER_TYPE` | 转写方式 | `bcut` |
+| `WHISPER_MODEL_SIZE` | Whisper 模型大小 | `tiny` |
+| `NOTE_OUTPUT_DIR` | 笔记输出目录 | `note_results` |
+| `FFMPEG_BIN_PATH` | FFmpeg 路径，留空时使用系统 PATH | 空 |
 
-推荐开发期使用：
+模型供应商和 API Key 建议直接在 Web 设置页面中配置。
 
-```env
-TRANSCRIBER_TYPE=bcut
-WHISPER_MODEL_SIZE=tiny
-```
+使用 Brave 进行联网核验时，还需要在 `.env` 中填写 `BRAVE_SEARCH_API_KEY`。
 
-首次触发 `fast-whisper tiny` 时会下载模型到：
+## 可选：Docker
 
-```text
-backend/models/whisper/whisper-tiny
-```
-
-## 浏览器扩展
-
-扩展目录位于 `reel-mind-extension/`，用于同步抖音 Cookie、提供 popup、设置页和视频页入口。
-
-安装依赖：
+请先安装 Docker Desktop，并准备环境配置：
 
 ```powershell
-cd reel-mind-extension
-pnpm install
+Copy-Item .env.example .env
+docker compose up -d --build
 ```
 
-开发构建：
+Docker 启动后同样访问 `http://127.0.0.1:3015/`。停止服务：
 
 ```powershell
-pnpm dev
-```
-
-生产构建：
-
-```powershell
-pnpm build
-```
-
-构建产物会输出到：
-
-```text
-reel-mind-extension/extension/
-```
-
-抖音详情接口依赖有效 Cookie。如果视频详情为空、提示需要登录或下载失败，优先检查：
-
-```text
-http://127.0.0.1:8483/api/downloader_cookie_status/douyin
-```
-
-推荐同步方式：
-
-1. 在浏览器中打开抖音精选并登录。
-2. 打开 Reel Mind 浏览器扩展。
-3. 点击 Cookie 状态块中的「同步 Cookie」。
-4. 回到 Web 设置页刷新状态。
-
-## 常见问题
-
-### 页面一直显示后端初始化中
-
-检查前端是否指向了正确后端：
-
-```powershell
-$env:VITE_API_BASE_URL="http://127.0.0.1:8483/api"
-```
-
-修改后需要重启前端服务，并在浏览器中按 `Ctrl + F5` 强制刷新。
-
-### 生成失败并提示第三方服务异常
-
-通常是在线转写服务波动。当前后端会自动尝试回退到 `fast-whisper`。如果仍失败，检查：
-
-- FFmpeg 是否安装并加入 PATH
-- `backend/models/whisper/whisper-tiny` 是否下载完整
-- 后端日志中的具体异常
-- 抖音 Cookie 是否缺失或过期
-
-### 生成成功但笔记内容很少
-
-部分知识视频主要依赖画面文字或字幕，音频里没有完整讲解。当前后端会把标题、文案、描述和话题标签合并进上下文，但画面文字较多的视频仍需要后续增强 OCR 或视频理解能力。
-
-### 可选 Docker 服务启动后无法访问
-
-确认端口没有被占用，并查看服务状态：
-
-```powershell
-docker compose ps
-docker compose logs --tail=80
-```
-
-Docker 正常时，宿主机健康检查应返回 `{"code":0,"msg":"success","data":null}`：
-
-```powershell
-Invoke-RestMethod http://127.0.0.1:3015/api/sys_check
+docker compose down
 ```
 
 ## 项目结构
 
 ```text
-.
-├── backend/               # FastAPI 后端、下载器、转写、AI 总结、数据库
-├── reel-mind-frontend/     # React Web 前端
-├── reel-mind-extension/    # 浏览器扩展
-├── doc/                   # 文档图片和产品资料
-├── nginx/                 # Docker 反向代理配置
-├── readme/                # 阶段交接与补充文档
-├── task/                  # PRD 汇报版和使用指南
-├── docker-compose.yml     # Docker Compose 部署
-├── OPEN_ME_FIRST.md       # 给非技术人员的最短说明
-├── run.bat                # 唯一 Windows 本地入口：启动/检查/状态/停止
-├── pytest.ini             # 后端 pytest 配置
-├── DEPLOYMENT.md          # 面向非技术人员的部署说明
-└── README-usage.md        # 当前 demo 的详细使用说明
+backend/                FastAPI 后端
+reel-mind-frontend/     React Web 前端
+reel-mind-extension/    浏览器扩展
+run.bat                 Windows 本地启动脚本
+docker-compose.yml      Docker Compose 配置
 ```
-
-## 路线图
-
-- [x] 抖音精选链接输入与视频元信息解析
-- [x] 音频下载、转写和 AI 总结闭环
-- [x] 收藏夹、标签、备注与历史回看
-- [x] Markdown 笔记和专用思维导图展示
-- [x] 基于当前笔记上下文的 AI 问答
-- [x] 知识卡片、信息密度、可信度、可执行性评分
-- [x] 离线主张抽取与联网核验
-- [x] 跨视频知识库问答 MVP
-- [x] 浏览器扩展 Cookie 同步入口
-- [ ] 删除任务时统一清理数据库、结果文件、转写缓存和向量索引
-- [ ] 生成失败原因分类与用户可读提示
-- [ ] Markdown、图片、PDF、Word 等导出体验完善
-- [ ] 针对画面文字知识视频增强截图 OCR 或视频理解
-- [ ] 联网核验支持按单条主张重新核验和人工标注
-- [ ] 更完整的端到端回归测试
 
 ## 相关文档
 
-- [PRD 技术汇报版](./task/ReelMind_PRD_汇报版.md)
-- [产品使用指南](./task/ReelMind_使用指南.md)
 - [详细使用说明](./README-usage.md)
-- [贡献指南](./CONTRIBUTING.md)
-- [更新日志](./CHANGELOG.md)
-- [发布说明](./RELEASING.md)
+- [部署说明](./DEPLOYMENT.md)
+- [产品使用指南](./task/ReelMind_使用指南.md)
 
 ## 许可证
 
 本项目基于 [MIT License](./LICENSE) 开源。
-
-抖音下载相关代码参考了 [Evil0ctal/Douyin_TikTok_Download_API](https://github.com/Evil0ctal/Douyin_TikTok_Download_API)。
